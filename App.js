@@ -9,6 +9,8 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 
+import request from 'axios';
+
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
   android:
@@ -18,12 +20,38 @@ const instructions = Platform.select({
 
 type Props = {};
 export default class App extends Component<Props> {
+  _checkConnectivity = () => {
+    console.log('calling')
+    request
+      .post('https://localhost:3000')
+      .then( response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.log(error)
+        if (error.response) {
+          console.log(1)
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        } else if (error.request) {
+          console.log(2)
+          console.log(error.request);
+        } else {
+          console.log(3)
+          console.log('Error', error.message);
+        }
+        console.log(error.config);
+      });
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>Welcome to React Native!</Text>
         <Text style={styles.instructions}>To get started, edit App.js</Text>
         <Text style={styles.instructions}>{instructions}</Text>
+        <Button title="Hey call" onPress={this._checkConnectivity}></Button>
       </View>
     );
   }
