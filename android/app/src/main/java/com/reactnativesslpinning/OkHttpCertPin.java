@@ -2,20 +2,16 @@ package com.reactnativesslpinning;
 
 import com.facebook.react.modules.network.OkHttpClientFactory;
 import com.facebook.react.modules.network.OkHttpClientProvider;
-import com.datatheorem.android.trustkit.TrustKit;
 import com.facebook.react.modules.network.ReactCookieJarContainer;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.SSLSession;
-
 import okhttp3.CertificatePinner;
 import okhttp3.OkHttpClient;
 
-public class OkHttpCertPinTrustKit implements OkHttpClientFactory {
+public class OkHttpCertPin implements OkHttpClientFactory {
 
     @Override
     public OkHttpClient createNewNetworkModuleClient() {
@@ -27,11 +23,15 @@ public class OkHttpCertPinTrustKit implements OkHttpClientFactory {
             return null;
         }
 
+        CertificatePinner certificatePinner = new CertificatePinner.Builder()
+                .add(hostname, "sha256/miRL3esL3Vrr1eKLS1k57h1nZQ0HRGW05zhfUoccP78=")
+                // .add(hostname, "sha256/YOUR_PUBLIC_KEY_HASH_BACKUP1")
+                // .add(hostname, "sha256/YOUR_PUBLIC_KEY_HASH_BACKUP2")
+                .build();
+
         OkHttpClient.Builder client = new OkHttpClient.Builder().connectTimeout(0, TimeUnit.MILLISECONDS)
                 .readTimeout(0, TimeUnit.MILLISECONDS).writeTimeout(0, TimeUnit.MILLISECONDS)
-                .cookieJar(new ReactCookieJarContainer())
-                .sslSocketFactory(TrustKit.getInstance().getSSLSocketFactory(hostname),
-                        TrustKit.getInstance().getTrustManager(hostname));
+                .cookieJar(new ReactCookieJarContainer()).certificatePinner(certificatePinner);
         return OkHttpClientProvider.enableTls12OnPreLollipop(client).build();
     }
 }

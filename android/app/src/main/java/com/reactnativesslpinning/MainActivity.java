@@ -3,9 +3,8 @@ package com.reactnativesslpinning;
 import android.os.Bundle;
 
 import com.facebook.react.ReactActivity;
-import com.datatheorem.android.trustkit.TrustKit;
 import com.facebook.react.modules.network.OkHttpClientProvider;
-import com.reactnativesslpinning.OkHttpCertPinTrustKit;
+import com.reactnativesslpinning.OkHttpCertPin;
 
 public class MainActivity extends ReactActivity {
 
@@ -20,12 +19,7 @@ public class MainActivity extends ReactActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        try {
-            TrustKit.initializeWithNetworkSecurityConfiguration(this);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        OkHttpClientProvider.setOkHttpClientFactory(new OkHttpCertPinTrustKit());
         super.onCreate(savedInstanceState);
+        OkHttpClientProvider.setOkHttpClientFactory(new OkHttpCertPin());
     }
 }
