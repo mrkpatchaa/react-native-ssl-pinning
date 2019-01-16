@@ -10,6 +10,24 @@ Check branches for cases:
 - Even more security with SSL pinning
 - SSL pinning using [TrustKit](https://github.com/datatheorem/TrustKit-Android)
 
+\***Notice:** I did not implement iOS versions. You can find how to do it [here](https://medium.com/@jaedmuva/react-native-ssl-pinning-is-back-ios-version-814dfce2400c) and [here](https://github.com/datatheorem/TrustKit/blob/master/docs/getting-started.md).
+
+You can read more about SSL pinning (and security) in React Native with theses links:
+
+- [https://medium.com/@jaedmuva/react-native-ssl-pinning-is-back-e317e6682642](https://medium.com/@jaedmuva/react-native-ssl-pinning-is-back-e317e6682642)
+- [https://www.madebymany.com/stories/a-year-of-react-native-ssl-pinning](https://www.madebymany.com/stories/a-year-of-react-native-ssl-pinning)
+- [http://tech.taskrabbit.com/blog/2016/06/17/enable-tls-android-with-react-native/](http://tech.taskrabbit.com/blog/2016/06/17/enable-tls-android-with-react-native/)
+- [https://developer.android.com/training/articles/security-config](https://developer.android.com/training/articles/security-config)
+- [https://www.owasp.org/index.php/Certificate_and_Public_Key_Pinning](https://www.owasp.org/index.php/Certificate_and_Public_Key_Pinning)
+
+Reference and misc :
+
+- [https://github.com/hawkup/react-native-ssl-pinning](https://github.com/hawkup/react-native-ssl-pinning)
+- [https://github.com/localz/react-native-pinch](https://github.com/localz/react-native-pinch)
+- [https://github.com/approov/react-native-cert-pinner](https://github.com/approov/react-native-cert-pinner)
+- [https://github.com/wkh237/react-native-fetch-blob](https://github.com/wkh237/react-native-fetch-blob)
+- [https://github.com/joltup/rn-fetch-blob](https://github.com/joltup/rn-fetch-blob)
+
 ## Installation
 
 ```
