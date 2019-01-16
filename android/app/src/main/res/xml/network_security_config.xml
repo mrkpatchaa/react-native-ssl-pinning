@@ -6,7 +6,8 @@
         </trust-anchors>
         <pin-set>
             <pin digest="SHA-256">miRL3esL3Vrr1eKLS1k57h1nZQ0HRGW05zhfUoccP78=</pin>
-            <pin digest="SHA-256">gWaUTBKrZyk17JOs+wkY3FmnWfgrT9ljZBPA4Hi+zeA=</pin>
+            <pin digest="SHA-256">miRL3esL3Vrr1eKLS1k57h1nZQ0HRGW05zhfUoccP79=</pin>
+            <!-- YOUR_PUBLIC_KEY_HASH_BACKUP_1 -->
         </pin-set>
         <!-- TrustKit Android API -->
         <trustkit-config enforcePinning="true">
