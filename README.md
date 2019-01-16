@@ -1,4 +1,4 @@
-# SSL experimentation in React Native
+# Communicating over SSL in React Native
 
 This project aims to show different cases of communication over SSL between your React Native application and your api.
 
@@ -8,6 +8,7 @@ Check branches for cases:
 - Disable SSL verification :danger
 - Add trusted anchor for certificate path
 - Even more security with SSL pinning
+- SSL pinning using [TrustKit](https://github.com/datatheorem/TrustKit-Android)
 
 ## Installation
 
