@@ -1,0 +1,8 @@
+<network-security-config>
+    <domain-config>
+        <domain includeSubdomains="true">localhost</domain>
+        <trust-anchors>
+            <certificates src="@raw/trusted_roots"/>
+        </trust-anchors>
+    </domain-config>
+</network-security-config>
