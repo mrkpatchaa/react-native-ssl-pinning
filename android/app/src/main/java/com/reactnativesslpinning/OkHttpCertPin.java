@@ -1,11 +1,12 @@
 package com.reactnativesslpinning;
 
+import com.datatheorem.android.trustkit.TrustKit;
+import com.datatheorem.android.trustkit.config.DomainPinningPolicy;
+import com.datatheorem.android.trustkit.config.PublicKeyPin;
 import com.facebook.react.modules.network.OkHttpClientFactory;
 import com.facebook.react.modules.network.OkHttpClientProvider;
 import com.facebook.react.modules.network.ReactCookieJarContainer;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.CertificatePinner;
@@ -15,23 +16,18 @@ public class OkHttpCertPin implements OkHttpClientFactory {
 
     @Override
     public OkHttpClient createNewNetworkModuleClient() {
-        String hostname;
-        try {
-            hostname = new URL("https://localhost:3000").getHost();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-            return null;
-        }
 
-        CertificatePinner certificatePinner = new CertificatePinner.Builder()
-                .add(hostname, "sha256/miRL3esL3Vrr1eKLS1k57h1nZQ0HRGW05zhfUoccP78=")
-                // .add(hostname, "sha256/YOUR_PUBLIC_KEY_HASH_BACKUP1")
-                // .add(hostname, "sha256/YOUR_PUBLIC_KEY_HASH_BACKUP2")
-                .build();
+        CertificatePinner.Builder certificatePinnerBuilder = new CertificatePinner.Builder();
+
+        for (DomainPinningPolicy domainPinningPolicy : TrustKit.getInstance().getConfiguration().getAllPolicies()) {
+            for (PublicKeyPin key : domainPinningPolicy.getPublicKeyPins()) {
+                certificatePinnerBuilder.add(domainPinningPolicy.getHostname(), "sha256/" + key.toString());
+            }
+        }
 
         OkHttpClient.Builder client = new OkHttpClient.Builder().connectTimeout(0, TimeUnit.MILLISECONDS)
                 .readTimeout(0, TimeUnit.MILLISECONDS).writeTimeout(0, TimeUnit.MILLISECONDS)
-                .cookieJar(new ReactCookieJarContainer()).certificatePinner(certificatePinner);
+                .cookieJar(new ReactCookieJarContainer()).certificatePinner(certificatePinnerBuilder.build());
         return OkHttpClientProvider.enableTls12OnPreLollipop(client).build();
     }
 }

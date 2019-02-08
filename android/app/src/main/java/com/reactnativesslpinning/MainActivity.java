@@ -2,9 +2,9 @@ package com.reactnativesslpinning;
 
 import android.os.Bundle;
 
+import com.datatheorem.android.trustkit.TrustKit;
 import com.facebook.react.ReactActivity;
 import com.facebook.react.modules.network.OkHttpClientProvider;
-import com.reactnativesslpinning.OkHttpCertPin;
 
 public class MainActivity extends ReactActivity {
 
@@ -19,7 +19,12 @@ public class MainActivity extends ReactActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        try {
+            TrustKit.initializeWithNetworkSecurityConfiguration(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         OkHttpClientProvider.setOkHttpClientFactory(new OkHttpCertPin());
+        super.onCreate(savedInstanceState);
     }
 }
