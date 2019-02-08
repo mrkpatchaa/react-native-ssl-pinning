@@ -9,6 +9,7 @@ Check branches for cases:
 - Add trusted anchor for certificate path
 - Even more security with SSL pinning
 - SSL pinning using [TrustKit](https://github.com/datatheorem/TrustKit-Android)
+- SSL pinning combining TrustKit and custom implementation
 
 \***Notice:** I did not implement iOS versions. You can find how to do it [here](https://medium.com/@jaedmuva/react-native-ssl-pinning-is-back-ios-version-814dfce2400c) and [here](https://github.com/datatheorem/TrustKit/blob/master/docs/getting-started.md).
 
@@ -19,6 +20,7 @@ You can read more about SSL pinning (and security) in React Native with theses l
 - [http://tech.taskrabbit.com/blog/2016/06/17/enable-tls-android-with-react-native/](http://tech.taskrabbit.com/blog/2016/06/17/enable-tls-android-with-react-native/)
 - [https://developer.android.com/training/articles/security-config](https://developer.android.com/training/articles/security-config)
 - [https://www.owasp.org/index.php/Certificate_and_Public_Key_Pinning](https://www.owasp.org/index.php/Certificate_and_Public_Key_Pinning)
+- [https://github.com/datatheorem/TrustKit-Android/issues/6](https://github.com/datatheorem/TrustKit-Android/issues/6)
 
 Reference and misc :
 
