@@ -1,5 +1,7 @@
 # Communicating over SSL in React Native
 
+!!! This reposirtry is experimental and provides cases only for Android. Make sure to check this package that covers ssl pinning in Android and iOS. https://github.com/MaxToyberman/react-native-ssl-pinning
+
 This project aims to show different cases of communication over SSL between your React Native application and your api.
 
 Check branches for cases:
